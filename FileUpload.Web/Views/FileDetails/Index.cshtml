@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FileUpload.Domain.Entities.FileDetails>
+
+<div class="w-100 card border—O p-4">
+    <div class="card-header bg-primary bg-gradient">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-white">Files List</h3>
+            </div>
+        </div>
+    </div>
+    <div class="card-body border">
+        <div class="row">
+            <div class="col-6 offset-6 text-end">
+                <a asp-controller="FileDetails" asp-action="Insert" class="btn btn-secondary">
+                    <i class="bi bi-plus-circle"></i> Add File
+                </a>
+            </div>
+        </div>
+    </div>
+    <iframe src="@Url.Action("GetImage", "FileDetails", new { id = 7})"></iframe>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID #</th>
+                <th>File Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td>@obj.Id</td>
+                    <td>@obj.FileName</td>
+                    <td>@obj.StartDate</td>
+                    <td>@obj.EndDate</td>
+                    <td>
+                        <a asp-action="DownloadFile" asp-route-id="@obj.Id" class="btn btn-primary">Download</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

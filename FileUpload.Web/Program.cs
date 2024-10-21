@@ -1,3 +1,6 @@
+using FileUpload.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace FileUpload.Web
 {
     public class Program
@@ -8,7 +11,8 @@ namespace FileUpload.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddDbContext<ApplicationDbContext>(option=>
+            option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
